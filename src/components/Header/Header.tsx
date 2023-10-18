@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
+import soundClient from '../../SoundClient/SoundClient.ts';
 
 const navLinks = [
   {
@@ -18,7 +19,7 @@ const navLinks = [
 const Header = () => {
   return (
     <header className={styles.header}>
-      <Link to="/">
+      <Link to="/" onClick={() => soundClient.playClick()}>
         <svg
           className={styles.logo}
           xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +38,7 @@ const Header = () => {
         <ul className={styles.nav__list}>
           {navLinks.map(({ url, title }) => (
             <li key={title} className={styles.nav__item}>
-              <NavLink to={url} className={styles.nav__link}>
+              <NavLink to={url} className={styles.nav__link} onClick={() => soundClient.playClick()}>
                 {title}
               </NavLink>
             </li>

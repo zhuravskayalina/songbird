@@ -9,6 +9,7 @@ import Options from '../components/Options/Options.tsx';
 import BirdCard from '../components/BirdCard/Card.tsx';
 import { clsx } from 'clsx';
 import { Link } from 'react-router-dom';
+import soundClient from '../SoundClient/SoundClient.ts';
 
 const levels = Object.keys(birdsDataEn) as LevelsEn[];
 
@@ -40,9 +41,11 @@ const Game = () => {
     if (Number(value) === currentBird?.id) {
       setScore((prev) => prev + 10);
       setBirdGuessed(true);
+      soundClient.playCorrect();
     } else {
       setScore((prev) => prev - 1);
       setBirdGuessed(false);
+      soundClient.playWrong();
     }
     setSelectedOption(levelData?.find((bird) => bird.id === id));
   };
@@ -53,8 +56,10 @@ const Game = () => {
         setLevelCounter((prev) => prev + 1);
         setSelectedOption(undefined);
         setBirdGuessed(false);
+        soundClient.playClick();
       } else {
         setGameOver(true);
+        soundClient.playWin();
       }
     }
   };

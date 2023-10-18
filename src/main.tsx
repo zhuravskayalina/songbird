@@ -5,6 +5,7 @@ import './index.scss';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Game from './routes/Game.tsx';
 import Layout from './components/Layout/Layout.tsx';
+import Gallery from './routes/Gallery.tsx';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: 'game',
         element: <Game />,
+      },
+      {
+        path: 'gallery',
+        element: <Gallery />,
       },
     ],
   },
