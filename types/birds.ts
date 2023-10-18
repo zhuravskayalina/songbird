@@ -1,4 +1,4 @@
-export interface BirdItem {
+export interface Bird {
   id: number;
   name: string;
   species: string;
@@ -6,3 +6,5 @@ export interface BirdItem {
   image: string;
   audio: string;
 }
+
+export type LevelsEn = 'warming' | 'sparrows' | 'forest birds' | 'songbirds' | 'raptors' | 'seabirds';

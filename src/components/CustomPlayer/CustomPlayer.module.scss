@@ -1,0 +1,28 @@
+.player {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  gap: 20px;
+
+  &__progressBox {
+    width: 100%;
+  }
+
+  &__progress {
+    width: 100%;
+  }
+}
+
+
+.button {
+  background-color: transparent;
+  border: none;
+}
+
+.time {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}

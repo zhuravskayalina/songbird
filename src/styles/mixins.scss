@@ -1,0 +1,15 @@
+@mixin center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin transparent-bcg($color, $opacity) {
+  background-color: rgba($color, $opacity);
+}
+
+@mixin media-mobile {
+  @media screen and (max-width: 500px) {
+    @content;
+  }
+}

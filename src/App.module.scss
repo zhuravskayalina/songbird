@@ -1,0 +1,56 @@
+@use './styles/colors';
+@use './styles/mixins';
+
+.main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.responsiveText {
+  font-size: 17vw;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+  text-transform: uppercase;
+}
+
+.imageBlock {
+  background-image: url('./assets/images/main.png');
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  flex-grow: 1;
+  object-fit: cover;
+  border-radius: 56px;
+  overflow: hidden;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.description {
+  font-size: 20px;
+}
+
+.playBtn {
+  width: 85%;
+  @include mixins.transparent-bcg(colors.$black, 0.25);
+  border-radius: 56px;
+  padding: 15px;
+  display: flex;
+  font-size: 28px;
+  text-transform: uppercase;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+  backdrop-filter: blur(20px);
+  color: white;
+  transition: .3s;
+
+  &:hover {
+    @include mixins.transparent-bcg(colors.$black, 0.75);
+  }
+}

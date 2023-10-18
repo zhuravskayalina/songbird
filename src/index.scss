@@ -1,0 +1,25 @@
+@use './styles/colors';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body,
+#root {
+  height: 100%;
+  font-family: 'Helvetica Neue', sans-serif;
+  color: colors.$white;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}

@@ -1,0 +1,21 @@
+@use '../../styles/colors';
+
+.layout {
+  display: flex;
+  justify-content: center;
+  background-color: colors.$main-background;
+  width: 100%;
+  color: colors.$white;
+  min-height: 100%;
+}
+
+.container {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.main {
+  flex-grow: 1;
+}

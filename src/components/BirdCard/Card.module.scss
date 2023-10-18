@@ -1,0 +1,45 @@
+@use 'src/styles/colors';
+
+.card {
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 312px 1fr;
+  grid-template-areas:
+    'img name'
+    'img player'
+    'img description';
+  background: colors.$gray;
+  column-gap: 32px;
+  row-gap: 24px;
+  border-radius: 32px;
+  grid-area: card;
+
+  &__img {
+    width: 312px;
+    height: 312px;
+    grid-area: img;
+    border-radius: 20px;
+    object-fit: cover;
+  }
+
+  &__nameBox {
+    grid-area: name;
+  }
+
+  &__name {
+    color: colors.$white;
+    font-size: 32px;
+    line-height: 140%;
+  }
+
+  &__species {
+  }
+
+  &__player {
+    grid-area: player;
+  }
+
+  &__description {
+    grid-area: description;
+  }
+}
