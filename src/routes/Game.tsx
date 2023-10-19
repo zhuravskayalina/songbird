@@ -36,16 +36,17 @@ const Game = () => {
   }, [levelCounter]);
 
   const handleChangeRadioButton = (event: ChangeEvent, id: number) => {
-    if (isBirdGuessed) return;
-    const { value } = event.target as HTMLInputElement;
-    if (Number(value) === currentBird?.id) {
-      setScore((prev) => prev + 10);
-      setBirdGuessed(true);
-      soundClient.playCorrect();
-    } else {
-      setScore((prev) => prev - 1);
-      setBirdGuessed(false);
-      soundClient.playWrong();
+    if (!isBirdGuessed) {
+      const { value } = event.target as HTMLInputElement;
+      if (Number(value) === currentBird?.id) {
+        setScore((prev) => prev + 10);
+        setBirdGuessed(true);
+        soundClient.playCorrect();
+      } else {
+        setScore((prev) => prev - 1);
+        setBirdGuessed(false);
+        soundClient.playWrong();
+      }
     }
     setSelectedOption(levelData?.find((bird) => bird.id === id));
   };

@@ -15,6 +15,7 @@ function CustomAudioPlayer({ audioUrl }: CustomAudioPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
+    setIsPlaying(false);
     const audio = audioRef.current;
     if (!audio) return;
     const updateTime = () => {
@@ -32,7 +33,7 @@ function CustomAudioPlayer({ audioUrl }: CustomAudioPlayerProps) {
       audio.removeEventListener('timeupdate', updateTime);
       audio.removeEventListener('loadedmetadata', setAudioDuration);
     };
-  }, []);
+  }, [audioUrl]);
 
   const togglePlayPause = () => {
     const audio = audioRef.current;
@@ -43,7 +44,7 @@ function CustomAudioPlayer({ audioUrl }: CustomAudioPlayerProps) {
       audio.play();
     }
 
-    setIsPlaying(!isPlaying);
+    setIsPlaying((prev) => !prev);
   };
 
   const formatTime = (timeInSeconds: number) => {
