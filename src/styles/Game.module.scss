@@ -54,3 +54,11 @@
     opacity: 1;
   }
 }
+
+.right {
+  background-color: colors.$radio-right !important;
+}
+
+.wrong {
+  background-color: colors.$radio-false !important;
+}

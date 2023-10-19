@@ -1,37 +1,32 @@
 import { Bird } from '../../../types/birds.ts';
-import { ChangeEvent } from 'react';
+import { MutableRefObject } from 'react';
 import styles from './Options.module.scss';
 import { clsx } from 'clsx';
 
 interface SelectProps {
   levelData: Bird[];
-  handleChange: (event: ChangeEvent, id: number) => void;
+  handleChange: (id: number, index: number) => void;
   currentBird: Bird | undefined;
   selectedOptionId: number | undefined;
+  listRef: MutableRefObject<HTMLSpanElement[]>;
 }
 
-const Options = ({ levelData, handleChange, selectedOptionId, currentBird }: SelectProps) => {
+const Options = ({ levelData, handleChange, listRef }: SelectProps) => {
   return (
     <div className={styles.radios}>
-      {levelData.map(({ name, id }) => (
-        <label key={id} htmlFor={`bird-${id}`} className={styles.label}>
+      {levelData.map(({ name, id }, index) => (
+        <label key={`${name}${id}`} htmlFor={`bird-${id}`} className={styles.label}>
           <input
             className={clsx(styles.input)}
             type="radio"
             id={`bird-${id}`}
             value={id}
-            onChange={(event) => {
-              handleChange(event, id);
+            onChange={() => {
+              handleChange(id, index);
             }}
             name="bird"
           />
-          <span
-            className={clsx(
-              styles.customRadio,
-              selectedOptionId === id && currentBird!.id === id && styles.right,
-              selectedOptionId === id && currentBird!.id !== id && styles.wrong,
-            )}
-          />
+          <span ref={(element) => (listRef.current[index] = element!)} className={clsx(styles.customRadio)} />
           {name}
         </label>
       ))}

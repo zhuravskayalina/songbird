@@ -1,6 +1,6 @@
 import Levels from '../components/Levels/Levels.tsx';
 import birdsDataEn from '../../data/birds/en.ts';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from '../styles/Game.module.scss';
 import Task from '../components/Task/Task.tsx';
 import { Bird, LevelsEn } from '../../types/birds.ts';
@@ -21,6 +21,8 @@ const Game = () => {
   const [selectedOption, setSelectedOption] = useState<Bird | undefined>();
   const [isBirdGuessed, setBirdGuessed] = useState(false);
   const [isGameOver, setGameOver] = useState(false);
+  const listRef = useRef<HTMLSpanElement[]>([]);
+  const MAX_LEVELS_COUNT = 5;
 
   useEffect(() => {
     const activeLevel = levels[levelCounter];
@@ -35,32 +37,44 @@ const Game = () => {
     }
   }, [levelCounter]);
 
-  const handleChangeRadioButton = (event: ChangeEvent, id: number) => {
+  const handleChangeRadioButton = (id: number, index: number) => {
+    console.log('id', id);
     if (!isBirdGuessed) {
-      const { value } = event.target as HTMLInputElement;
-      if (Number(value) === currentBird?.id) {
+      if (id === currentBird?.id) {
         setScore((prev) => prev + 10);
         setBirdGuessed(true);
         soundClient.playCorrect();
+        listRef.current[index].classList.add(styles.right);
+
+        if (levelCounter === MAX_LEVELS_COUNT) {
+          setGameOver(true);
+          soundClient.playWin();
+        }
       } else {
         setScore((prev) => prev - 1);
         setBirdGuessed(false);
         soundClient.playWrong();
+        listRef.current[index].classList.add(styles.wrong);
       }
     }
     setSelectedOption(levelData?.find((bird) => bird.id === id));
   };
 
+  const clearRadiosClasses = (item: HTMLSpanElement) => {
+    item.classList.remove(styles.right);
+    item.classList.remove(styles.wrong);
+  };
+
   const nextLevel = () => {
     if (isBirdGuessed) {
       if (levelCounter < 5) {
+        listRef.current.forEach((item) => {
+          clearRadiosClasses(item);
+        });
         setLevelCounter((prev) => prev + 1);
         setSelectedOption(undefined);
         setBirdGuessed(false);
         soundClient.playClick();
-      } else {
-        setGameOver(true);
-        soundClient.playWin();
       }
     }
   };
@@ -72,6 +86,7 @@ const Game = () => {
       <Task bird={currentBird} isBirdGuessed={isBirdGuessed} />
       {levelData && (
         <Options
+          listRef={listRef}
           levelData={levelData}
           handleChange={handleChangeRadioButton}
           currentBird={currentBird}
