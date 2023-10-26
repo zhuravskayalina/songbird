@@ -28,5 +28,6 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-uses-react': 'off',
     'react/jsx-uses-vars': 'error',
+    'jsx-a11y/no-static-element-interactions': 'off',
   },
 };

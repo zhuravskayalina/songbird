@@ -1,6 +1,6 @@
 import Levels from '../components/Levels/Levels.tsx';
 import birdsDataEn from '../../data/birds/en.ts';
-import { useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import styles from '../styles/Game.module.scss';
 import Task from '../components/Task/Task.tsx';
 import { Bird, LevelsEn } from '../../types/birds.ts';
@@ -10,11 +10,14 @@ import BirdCard from '../components/BirdCard/Card.tsx';
 import { clsx } from 'clsx';
 import { Link } from 'react-router-dom';
 import soundClient from '../SoundClient/SoundClient.ts';
+import Modal from '../components/Modal/Modal.tsx';
+import { createPortal } from 'react-dom';
+import WinBanner from '../components/WinBanner/WinBanner.tsx';
 
 const levels = Object.keys(birdsDataEn) as LevelsEn[];
 
 const Game = () => {
-  const [levelCounter, setLevelCounter] = useState(0);
+  const [levelCounter, setLevelCounter] = useState(5);
   const [score, setScore] = useState(0);
   const [levelData, setLevelData] = useState<Bird[]>();
   const [currentBird, setCurrentBird] = useState<Bird>();
@@ -22,6 +25,8 @@ const Game = () => {
   const [isBirdGuessed, setBirdGuessed] = useState(false);
   const [isGameOver, setGameOver] = useState(false);
   const listRef = useRef<HTMLSpanElement[]>([]);
+  const [name, setName] = useState('');
+
   const MAX_LEVELS_COUNT = 5;
 
   useEffect(() => {
@@ -37,8 +42,11 @@ const Game = () => {
     }
   }, [levelCounter]);
 
+  const onChangeName = (event: ChangeEvent) => {
+    setName((event.target as HTMLInputElement).value);
+  };
+
   const handleChangeRadioButton = (id: number, index: number) => {
-    console.log('id', id);
     if (!isBirdGuessed) {
       if (id === currentBird?.id) {
         setScore((prev) => prev + 10);
@@ -98,8 +106,7 @@ const Game = () => {
         <button
           className={clsx(styles.nextBtn, isBirdGuessed && styles.nextBtn_enabled)}
           disabled={!isBirdGuessed}
-          onClick={nextLevel}
-        >
+          onClick={nextLevel}>
           Next level
         </button>
       )}
@@ -107,6 +114,12 @@ const Game = () => {
         <Link to="/results" className={clsx(styles.nextBtn, isBirdGuessed && styles.nextBtn_enabled)}>
           Go to results
         </Link>
+      )}
+      {isGameOver && createPortal(
+        <Modal>
+          <WinBanner score={score} name={name} onChange={onChangeName} />
+        </Modal>,
+        document.body,
       )}
     </div>
   );

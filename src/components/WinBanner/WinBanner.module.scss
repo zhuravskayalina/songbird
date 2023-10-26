@@ -1,0 +1,123 @@
+@use 'src/styles/colors';
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  column-gap: 12px;
+  row-gap: 20px;
+  grid-template-areas:
+    'header header header'
+    'title title title'
+    'score name save'
+    'line line line'
+    'start start start'
+    'results results results';
+
+  &__header {
+    grid-area: header;
+    color: colors.$white;
+    font-size: 40px;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    grid-area: title;
+    color: colors.$white;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+}
+
+.score__title,
+.name__title {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 300;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.score,
+.name {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 24px;
+  padding: 20px;
+}
+
+.save {
+  grid-area: save;
+  border-radius: 24px;
+  background: #454545;
+  border: none;
+  color: colors.$white;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 20px;
+}
+
+.score {
+  grid-area: score;
+  background: #454545;
+
+  &__title {
+  }
+
+  &__number {
+    color: colors.$white;
+    font-size: 24px;
+    font-weight: 300;
+  }
+}
+
+.name {
+  grid-area: name;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  &__title {
+  }
+
+  &__input {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: colors.$white;
+    font-size: 24px;
+    font-weight: 300;
+  }
+}
+
+.start,
+.goToResults {
+  color: colors.$black;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  border-radius: 100px;
+  padding: 20px;
+  border: none;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.start {
+  grid-area: start;
+  background-color: colors.$white;
+}
+
+.goToResults {
+  grid-area: results;
+  color: colors.$white;
+  background-color: colors.$gray;
+  border: 1px solid colors.$white;
+}
+
+.line {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  grid-area: line;
+  height: 1px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+}
