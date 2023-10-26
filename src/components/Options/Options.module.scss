@@ -1,0 +1,47 @@
+@use 'src/styles/colors';
+
+.radios {
+  background: colors.$gray;
+  padding: 8px 32px;
+  border-radius: 32px;
+  grid-area: quiz;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 20px 0;
+  border-bottom: 1px solid colors.$light-gray;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover .customRadio {
+    background-color: colors.$radio-hover;
+  }
+
+  &:hover .customRadio.right {
+    background-color: colors.$radio-right;
+  }
+
+  &:hover .customRadio.wrong {
+    background-color: colors.$radio-false;
+  }
+}
+
+.input {
+  visibility: hidden;
+}
+
+.customRadio {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: colors.$radio-default;
+  display: inline-block;
+  transition: 0.3s;
+}

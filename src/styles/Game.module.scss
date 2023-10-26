@@ -1,0 +1,64 @@
+@use 'colors';
+
+.gameBox {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 2fr 4fr 1fr;
+  grid-gap: 24px;
+  grid-template-areas:
+    'levels levels score'
+    'task task task'
+    'quiz card card'
+    'button button button';
+}
+
+.score {
+  border-radius: 32px;
+  border: 1px solid colors.$white;
+  padding: 17px 49px;
+  text-align: center;
+  text-transform: uppercase;
+  grid-area: score;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.nextBtn {
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  border-radius: 100px;
+  border: 1px solid #fff;
+  opacity: 0.2;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: transparent;
+  grid-area: button;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+
+  &_enabled {
+    background-color: colors.$white;
+    color: colors.$black;
+    opacity: 1;
+  }
+}
+
+.right {
+  background-color: colors.$radio-right !important;
+}
+
+.wrong {
+  background-color: colors.$radio-false !important;
+}

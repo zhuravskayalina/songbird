@@ -1,0 +1,25 @@
+@use 'src/styles/colors';
+
+.levels {
+  border-radius: 32px;
+  border: 1px solid colors.$gray;
+  display: flex;
+  justify-content: space-between;
+  grid-area: levels;
+
+  &__item {
+    padding: 20px 40px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 140%;
+    border-radius: 32px;
+    text-transform: uppercase;
+    flex-grow: 1;
+    user-select: none;
+    white-space: nowrap;
+
+    &_active {
+      background: colors.$gray;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+@use '../../styles/colors';
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 0;
+  border-bottom: 1px solid colors.$white;
+}
+
+.logo {
+  width: 40px;
+}
+
+.nav {
+  &__list {
+    display: flex;
+  }
+
+  &__item {
+  }
+
+  &__link {
+    color: colors.$white;
+    padding: 0 28px;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: uppercase;
+    transition: .3s;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
