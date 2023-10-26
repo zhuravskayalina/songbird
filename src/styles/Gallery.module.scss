@@ -1,0 +1,45 @@
+@use 'src/styles/colors';
+
+.gallery {
+  &__header {
+    font-size: 50px;
+  }
+
+  &__description {
+    margin-top: 20px;
+    width: 60%;
+  }
+
+  &__button {
+    background-color: transparent;
+    border: none;
+    text-transform: uppercase;
+    color: colors.$white;
+    cursor: pointer;
+    border-bottom: 1px solid colors.$white;
+    font-size: 20px;
+    margin-top: 10px;
+  }
+
+  &__list {
+    margin-top: 20px;
+  }
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+
+  &__title {
+    font-size: 40px;
+    text-transform: uppercase;
+    margin-top: 50px;
+  }
+
+  &__index {
+    font-size: 50px;
+  }
+}
