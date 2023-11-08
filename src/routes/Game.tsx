@@ -19,7 +19,7 @@ import { addWinner } from '../../store/slices/game.ts';
 const levels = Object.keys(birdsDataEn) as LevelsEn[];
 
 const Game = () => {
-  const [levelCounter, setLevelCounter] = useState(5);
+  const [levelCounter, setLevelCounter] = useState(0);
   const [score, setScore] = useState(0);
   const [levelData, setLevelData] = useState<Bird[]>();
   const [currentBird, setCurrentBird] = useState<Bird>();
