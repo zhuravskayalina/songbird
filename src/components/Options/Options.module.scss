@@ -10,7 +10,6 @@
 .label {
   display: flex;
   align-items: center;
-  gap: 10px;
   cursor: pointer;
   padding: 20px 0;
   border-bottom: 1px solid colors.$light-gray;
@@ -34,11 +33,13 @@
 
 .input {
   visibility: hidden;
+  margin-left: -10px;
 }
 
 .customRadio {
   width: 10px;
   height: 10px;
+  margin-right: 10px;
   border-radius: 50%;
   cursor: pointer;
   background-color: colors.$radio-default;

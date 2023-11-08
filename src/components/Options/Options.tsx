@@ -15,11 +15,11 @@ const Options = ({ levelData, handleChange, listRef }: SelectProps) => {
   return (
     <div className={styles.radios}>
       {levelData.map(({ name, id }, index) => (
-        <label key={`${name}${id}`} htmlFor={`bird-${id}`} className={styles.label}>
+        <label key={`${name}${id}`} htmlFor={`${name}-${id}`} className={styles.label}>
           <input
             className={clsx(styles.input)}
             type="radio"
-            id={`bird-${id}`}
+            id={`${name}-${id}`}
             value={id}
             onChange={() => {
               handleChange(id, index);

@@ -1,13 +1,16 @@
 import styles from './WinBanner.module.scss';
 import { ChangeEvent } from 'react';
+import { Link } from 'react-router-dom';
 
 interface WinBannerProps {
   score: number;
   name: string;
   onChange: (event: ChangeEvent) => void;
+  saveWinner: () => void;
+  handleStartNewGame: () => void;
 }
 
-const WinBanner = ({ score, name, onChange }: WinBannerProps) => {
+const WinBanner = ({ score, name, onChange, saveWinner, handleStartNewGame }: WinBannerProps) => {
   return (
     <div className={styles.content}>
       <p className={styles.content__header}>Congratulations</p>
@@ -27,9 +30,13 @@ const WinBanner = ({ score, name, onChange }: WinBannerProps) => {
         />
       </div>
       <span className={styles.line} />
-      <button className={styles.start}>Start again</button>
-      <button className={styles.goToResults}>Results</button>
-      <button className={styles.save}>Save</button>
+      <button className={styles.start} onClick={handleStartNewGame}>
+        Start again
+      </button>
+      <Link to='/results' className={styles.goToResults}>Results</Link>
+      <button className={styles.save} onClick={saveWinner}>
+        Save
+      </button>
     </div>
   );
 };

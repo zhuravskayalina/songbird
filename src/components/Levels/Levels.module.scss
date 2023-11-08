@@ -1,11 +1,18 @@
 @use 'src/styles/colors';
+@use 'src/styles/mixins';
 
 .levels {
   border-radius: 32px;
   border: 1px solid colors.$gray;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
   justify-content: space-between;
   grid-area: levels;
+
+  @include mixins.media-tablet {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
 
   &__item {
     padding: 20px 40px;

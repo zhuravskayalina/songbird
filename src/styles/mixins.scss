@@ -13,3 +13,16 @@
     @content;
   }
 }
+
+@mixin media-tablet-s {
+  @media screen and (max-width: 800px) {
+    @content;
+  }
+}
+
+
+@mixin media-tablet {
+  @media screen and (max-width: 1300px) {
+    @content;
+  }
+}

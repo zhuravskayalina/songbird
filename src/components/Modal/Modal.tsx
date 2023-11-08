@@ -1,13 +1,14 @@
 import styles from './Modal.module.scss';
-import { ReactElement, useRef, useState, MouseEvent } from 'react';
+import { ReactElement, useRef, MouseEvent, Dispatch, SetStateAction } from 'react';
 import { clsx } from 'clsx';
 
 interface ModalProps {
   children: ReactElement;
+  close: boolean;
+  setClose: Dispatch<SetStateAction<boolean>>
 }
 
-const Modal = ({ children }: ModalProps) => {
-  const [close, setClose] = useState(false);
+const Modal = ({ children, close, setClose }: ModalProps) => {
   const backgroundRef = useRef<HTMLDivElement>(null);
 
   const handleCloseOnBackground = (e: MouseEvent) => {

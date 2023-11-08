@@ -13,6 +13,8 @@ import soundClient from '../SoundClient/SoundClient.ts';
 import Modal from '../components/Modal/Modal.tsx';
 import { createPortal } from 'react-dom';
 import WinBanner from '../components/WinBanner/WinBanner.tsx';
+import { useDispatch } from 'react-redux';
+import { addWinner } from '../../store/slices/game.ts';
 
 const levels = Object.keys(birdsDataEn) as LevelsEn[];
 
@@ -26,10 +28,16 @@ const Game = () => {
   const [isGameOver, setGameOver] = useState(false);
   const listRef = useRef<HTMLSpanElement[]>([]);
   const [name, setName] = useState('');
+  const [closeWinModal, setCloseWinModal] = useState(false);
+
+  const dispatch = useDispatch();
 
   const MAX_LEVELS_COUNT = 5;
 
   useEffect(() => {
+    setGameOver(false);
+    setBirdGuessed(false);
+
     const activeLevel = levels[levelCounter];
     if (activeLevel in birdsDataEn) {
       const data = shuffleArray(birdsDataEn[activeLevel]);
@@ -41,6 +49,12 @@ const Game = () => {
       }
     }
   }, [levelCounter]);
+
+  const handleStartNewGame = () => {
+    soundClient.playClick();
+    setLevelCounter(0);
+    setCloseWinModal(true);
+  };
 
   const onChangeName = (event: ChangeEvent) => {
     setName((event.target as HTMLInputElement).value);
@@ -71,6 +85,13 @@ const Game = () => {
   const clearRadiosClasses = (item: HTMLSpanElement) => {
     item.classList.remove(styles.right);
     item.classList.remove(styles.wrong);
+  };
+
+  const handleSaveWinner = () => {
+    if (name && score) {
+      dispatch(addWinner({ name, score }));
+      setCloseWinModal(true);
+    }
   };
 
   const nextLevel = () => {
@@ -115,12 +136,19 @@ const Game = () => {
           Go to results
         </Link>
       )}
-      {isGameOver && createPortal(
-        <Modal>
-          <WinBanner score={score} name={name} onChange={onChangeName} />
-        </Modal>,
-        document.body,
-      )}
+      {isGameOver &&
+        createPortal(
+          <Modal close={closeWinModal} setClose={setCloseWinModal}>
+            <WinBanner
+              score={score}
+              name={name}
+              onChange={onChangeName}
+              saveWinner={handleSaveWinner}
+              handleStartNewGame={handleStartNewGame}
+            />
+          </Modal>,
+          document.body,
+        )}
     </div>
   );
 };

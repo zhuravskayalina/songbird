@@ -14,6 +14,16 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs', '**/*.scss'],
   parser: '@typescript-eslint/parser',
+  settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      'node': {
+        'extensions': ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+  },
   parserOptions: {
     'ecmaFeatures': {
       'jsx': true,
