@@ -33,7 +33,7 @@ const WinBanner = ({ score, name, onChange, saveWinner, handleStartNewGame }: Wi
       <button className={styles.start} onClick={handleStartNewGame}>
         Start again
       </button>
-      <Link to='/results' className={styles.goToResults}>Results</Link>
+      <Link to='/results' className={styles.goToResults} aria-label="Go to see winners results">Results</Link>
       <button className={styles.save} onClick={saveWinner}>
         Save
       </button>

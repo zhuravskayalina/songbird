@@ -18,7 +18,7 @@ const Footer = () => {
         />
       </svg>
       <span className={styles.footer__year}>2022</span>
-      <Link className={styles.footer__author} to="https://github.com/zhuravskayalina">
+      <Link className={styles.footer__author} to="https://github.com/zhuravskayalina" aria-label="Go to the authors GitHub profile">
         Anhelina Zhurauskaya
       </Link>
     </footer>

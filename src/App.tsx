@@ -8,7 +8,7 @@ function App() {
       <h1 className={styles.responsiveText}>SongBird</h1>
       <p className={styles.description}>Quiz game for recognizing birds by their voices.</p>
       <div className={styles.imageBlock}>
-        <Link className={styles.playBtn} to="game" onClick={() => soundClient.playClick()}>
+        <Link className={styles.playBtn} to="game" onClick={() => soundClient.playClick()} aria-label="Play game">
           Play
         </Link>
       </div>

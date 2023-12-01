@@ -19,7 +19,7 @@ const navLinks = [
 const Header = () => {
   return (
     <header className={styles.header}>
-      <Link to="/" onClick={() => soundClient.playClick()}>
+      <Link to="/" onClick={() => soundClient.playClick()} aria-label="Go to the Home page">
         <svg
           className={styles.logo}
           xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +38,7 @@ const Header = () => {
         <ul className={styles.nav__list}>
           {navLinks.map(({ url, title }) => (
             <li key={title} className={styles.nav__item}>
-              <NavLink to={url} className={styles.nav__link} onClick={() => soundClient.playClick()}>
+              <NavLink to={url} className={styles.nav__link} onClick={() => soundClient.playClick()} aria-label={`Go to the ${title}`}>
                 {title}
               </NavLink>
             </li>
